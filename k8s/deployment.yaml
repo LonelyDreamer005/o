@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: night-app
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: night-app
+
+  template:
+    metadata:
+      labels:
+        app: night-app
+
+    spec:
+      containers:
+        - name: night-container
+          image: vinay1030/night:latest
+          imagePullPolicy: Always
+
+          ports:
+            - containerPort: 5000
