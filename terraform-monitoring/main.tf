@@ -1,11 +1,15 @@
 terraform {
-  required_version = ">= 1.0"
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.5"
+    }
+  }
 }
 
-resource "terraform_data" "monitoring" {
-  input = "Prometheus and Grafana Monitoring"
-}
+provider "local" {}
 
-output "message" {
-  value = terraform_data.monitoring.output
+resource "local_file" "example" {
+  filename = "hello.txt"
+  content  = "Hello! Terraform is working successfully."
 }
